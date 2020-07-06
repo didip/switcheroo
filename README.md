@@ -23,7 +23,7 @@ ctx := context.WithValue(context.Background(), "total", 1)
 
 r := switcheroo.New(ctx)
 
-r.Add("/add/{number}", func(ctx context.Context, params map[string]string, others ...interface{}) {
+r.Add("/add/{number}", func(ctx context.Context, params map[string]string) {
     total := ctx.Value("total").(int)
     number, _ := strconv.Atoi(params["number"])
     total += number

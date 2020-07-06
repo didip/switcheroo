@@ -11,7 +11,7 @@ func TestExample(t *testing.T) {
 
 	r := New(ctx)
 
-	r.Add("/add/{number}", func(ctx context.Context, params map[string]string, others ...interface{}) {
+	r.Add("/add/{number}", func(ctx context.Context, params map[string]string) {
 		total := ctx.Value("total").(int)
 		number, _ := strconv.Atoi(params["number"])
 		total += number
@@ -31,7 +31,7 @@ func TestMatchedRun(t *testing.T) {
 
 	r := New(ctx)
 
-	r.Add("/a/{name}", func(ctx context.Context, params map[string]string, others ...interface{}) {
+	r.Add("/a/{name}", func(ctx context.Context, params map[string]string) {
 		toBeTested += ctx.Value("ctxkey").(string) + params["name"]
 	})
 
@@ -49,7 +49,7 @@ func TestExactMatchRun(t *testing.T) {
 
 	r := New(ctx)
 
-	r.Add("/a", func(ctx context.Context, params map[string]string, others ...interface{}) {
+	r.Add("/a", func(ctx context.Context, params map[string]string) {
 		toBeTested = "matched"
 	})
 
@@ -67,7 +67,7 @@ func TestMissRun(t *testing.T) {
 
 	r := New(ctx)
 
-	r.Add("/a/{name}", func(ctx context.Context, params map[string]string, others ...interface{}) {
+	r.Add("/a/{name}", func(ctx context.Context, params map[string]string) {
 		toBeTested += ctx.Value("ctxkey").(string) + params["name"]
 	})
 

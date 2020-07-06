@@ -19,7 +19,7 @@ func New(ctx context.Context) *Router {
 }
 
 // RouterFunc is the matched handler.
-type RouterFunc func(context.Context, map[string]string, ...interface{})
+type RouterFunc func(context.Context, map[string]string)
 
 // Router multiplexes based on string pattern.
 // The string pattern is {name} based. Similar to most HTTP routers pattern.
