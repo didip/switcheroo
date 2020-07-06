@@ -15,11 +15,13 @@ import (
     "context"
     "strconv"
     "log"
+
+    "github.com/didip/switcheroo"
 )
 
 ctx := context.WithValue(context.Background(), "total", 1)
 
-r := New(ctx)
+r := switcheroo.New(ctx)
 
 r.Add("/add/{number}", func(ctx context.Context, params map[string]string, others ...interface{}) {
     total := ctx.Value("total").(int)
