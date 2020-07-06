@@ -12,9 +12,9 @@ If you have, then Switcheroo is for you.
 
 ```go
 import (
-	"context"
-	"strconv"
-	"log"
+    "context"
+    "strconv"
+    "log"
 )
 
 ctx := context.WithValue(context.Background(), "total", 1)
@@ -22,13 +22,13 @@ ctx := context.WithValue(context.Background(), "total", 1)
 r := New(ctx)
 
 r.Add("/add/{number}", func(ctx context.Context, params map[string]string, others ...interface{}) {
-	total := ctx.Value("total").(int)
-	number, _ := strconv.Atoi(params["number"])
-	total += number
+    total := ctx.Value("total").(int)
+    number, _ := strconv.Atoi(params["number"])
+    total += number
 
-	if total != 10 {
-		log.Fatalf("total should have been 10. Got: %v", total)
-	}
+    if total != 10 {
+        log.Fatalf("total should have been 10. Got: %v", total)
+    }
 })
 
 r.Run("/add/9")
